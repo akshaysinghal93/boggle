@@ -85,26 +85,6 @@ public class Dictionary
 	public static final int VALIDWORD = 1;
 	public static final int PARTOFWORD = 2;
 	public static final int BOTH = 3;
-	
-	public static void main(String []args)
-	{
-		Dictionary dic = new Dictionary();
-		try{
-			dic.loadFromFile("boggle/SowPodsLarge.txt");
-		}
-		catch(Exception e) { System.out.println(e.getMessage());}
-		dic.add("shashi");
-		dic.add("shrinath");
-		dic.add("saumya");
-		dic.add("piyush");
-		
-		System.out.println(dic.contains("shashik"));
-		System.out.println(dic.contains("hello"));
-		System.out.println(dic.contains("sh"));
-		System.out.println(dic.contains("asdjs"));
-		System.out.println(dic.contains("saumya"));
-	}
-	
 	class Node
 	{
 		Node []children = null;

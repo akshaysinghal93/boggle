@@ -6,6 +6,8 @@
 
 package boggle;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author piverma
@@ -17,6 +19,14 @@ public class Boggle {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        GenerateGrid gd=new GenerateGrid();
+        Generatewords gw=new Generatewords(gd.fillGrid());
+        ArrayList<String> words=new ArrayList<String>();
+        words=gw.generate();
+        for (int i=0;i<words.size();i++)
+        {
+            System.out.println(words.get(i));
+        }
+        System.out.print("\n"+words.size());
     }
-    
 }
