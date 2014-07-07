@@ -32,11 +32,6 @@ public class Dictionary
 		iterator.setValid(true);
 	}
 	
-	public void addAll(Collection<String> words)
-	{
-		//TODO: This functionality will be implemented later.
-	}
-	
 	/**********************************
 	 * one word per line.             *
 	 **********************************/

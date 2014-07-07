@@ -12,21 +12,25 @@ import java.util.ArrayList;
  *
  * @author piverma
  */
-public class Boggle {
+public class Boggle 
+{
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        GenerateGrid gd=new GenerateGrid();
-        Generatewords gw=new Generatewords(gd.fillGrid());
-        ArrayList<String> words=new ArrayList<String>();
-        words=gw.generate();
-        for (int i=0;i<words.size();i++)
+    public static void main(String[] args) 
+    {
+        GridGenerator gridGenerator = new GridGenerator();
+        WordsGenerator wordsGenerator = new WordsGenerator(gridGenerator.getGrid());
+        ArrayList<String> words;
+        
+        words = wordsGenerator.generate();
+        
+        for (int i = 0; i < words.size(); i++)
         {
             System.out.println(words.get(i));
         }
-        System.out.print("\n"+words.size());
+        
+        System.out.print(words.size() + " words\r\n");
     }
 }
