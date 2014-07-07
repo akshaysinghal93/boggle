@@ -1,6 +1,7 @@
 package boggle;
 
 import java.util.*;
+import java.io.*;
 
 public class Dictionary
 {
@@ -15,6 +16,8 @@ public class Dictionary
 	{
 		Node parentNode = null;
 		Node iterator = root;
+		str = str.toLowerCase();
+		
 		int length = str.length();
 		for(int i = 0; i < length; i++)
 		{
@@ -31,12 +34,29 @@ public class Dictionary
 	
 	public void addAll(Collection<String> words)
 	{
+		//TODO: This functionality will be implemented later.
+	}
+	
+	/**********************************
+	 * one word per line.             *
+	 **********************************/
+	public void loadFromFile(String filename) throws Exception
+	{
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filename)));
+		String word = br.readLine();
+		while(word != null)
+		{
+			add(word);
+			word = br.readLine();
+		}
 	}
 	
 	public int contains(String word)
 	{
 		Node iterator = root;
 		int length = word.length();
+		
+		word = word.toLowerCase();
 		
 		for(int i = 0; i < length; i++)
 		{
@@ -69,12 +89,17 @@ public class Dictionary
 	public static void main(String []args)
 	{
 		Dictionary dic = new Dictionary();
+		try{
+			dic.loadFromFile("boggle/SowPodsLarge.txt");
+		}
+		catch(Exception e) { System.out.println(e.getMessage());}
 		dic.add("shashi");
 		dic.add("shrinath");
 		dic.add("saumya");
 		dic.add("piyush");
 		
-		System.out.println(dic.contains("shashi"));
+		System.out.println(dic.contains("shashik"));
+		System.out.println(dic.contains("hello"));
 		System.out.println(dic.contains("sh"));
 		System.out.println(dic.contains("asdjs"));
 		System.out.println(dic.contains("saumya"));
