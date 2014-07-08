@@ -40,13 +40,13 @@ public class WordsGenerator
         {
             for (int j = 0; j < 4; j++)
             {
-                sequence(i, j, grid[i][j],-1,-1);       
+                sequence(i, j, grid[i][j]);       
             }
         }
         return words;
     }
     
-    private void sequence(int i, int j, String input,int parentx,int parenty)
+    private void sequence(int i, int j, String input)
     {
         String oldInput;
         int p, q;
@@ -71,11 +71,11 @@ public class WordsGenerator
         {
             p = i + move[k][0];
             q = j + move[k][1];
-            if ((p >= 0 && p < 4) && (q >= 0 && q < 4) && !grid[p][q].contains(".") && (parentx!=p || parenty!=q))
+            if ((p >= 0 && p < 4) && (q >= 0 && q < 4) && !grid[p][q].contains("."))
             {
                 oldInput = input + grid[p][q];
                 grid[p][q] += ".";
-                sequence(p, q, oldInput,i,j);
+                sequence(p, q, oldInput);
                 grid[p][q] = "" + grid[p][q].charAt(0);
             }
         }
