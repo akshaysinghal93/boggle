@@ -16,16 +16,17 @@ public class WordsGenerator
 {
     private ArrayList<String> words = new ArrayList<String>();
     String[][] grid = null;
+    Box[] box = null;
     Dictionary check;
-    int[][] move = new int[][] {{1, 0}, {0, 1}, {1, 1}, {0, -1}, {-1, 0}, {-1, -1}, {-1, 1}, {1, -1}};
     
-    public WordsGenerator(String gridofcharacters[][])
+    public WordsGenerator(GridGenerator gridgen)
     {
-        grid = gridofcharacters;
+        box = gridgen.getBoxes();
+        grid = gridgen.getGrid();
         check = new Dictionary();
         try
         {
-			check.loadFromFile("C:\\Users\\piverma\\boggle\\boggle\\Boggle\\src\\boggle\\SowPodsLarge.txt");
+			check.loadFromFile("C:\\Users\\subprabhakar\\Desktop\\boggle\\SowPodsLarge.txt");
         }
         catch(Exception e) 
         { 
@@ -44,6 +45,11 @@ public class WordsGenerator
             }
         }
         return words;
+    }
+    
+    private Box[] getNeighbours(int r,int c)
+    {
+        return box[(((r+1)*4)-(4-(c+1))-1)].neighbours();
     }
     
     private void sequence(int i, int j, String input)
@@ -67,16 +73,19 @@ public class WordsGenerator
                 words.add(input);
                 break;
         }
-        for (int k = 0; k < 8; k++)
+     
+        Box[] neighbours = getNeighbours(i,j);
+        
+        for(Box b:neighbours)
         {
-            p = i + move[k][0];
-            q = j + move[k][1];
+            p = b.getRow() - 1;
+            q = b.getColumn() - 1;
             if ((p >= 0 && p < 4) && (q >= 0 && q < 4) && !grid[p][q].contains("."))
             {
                 oldInput = input + grid[p][q];
                 grid[p][q] += ".";
                 sequence(p, q, oldInput);
-                grid[p][q] = "" + grid[p][q].charAt(0);
+                grid[p][q] = new Character(grid[p][q].charAt(0)).toString();
             }
         }
     }
