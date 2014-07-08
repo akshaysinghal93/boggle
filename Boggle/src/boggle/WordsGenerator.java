@@ -25,7 +25,7 @@ public class WordsGenerator
         check = new Dictionary();
         try
         {
-			check.loadFromFile("boggle/SowPodsLarge.txt");
+			check.loadFromFile("C:\\Users\\piverma\\boggle\\boggle\\Boggle\\src\\boggle\\SowPodsLarge.txt");
         }
         catch(Exception e) 
         { 
@@ -40,13 +40,13 @@ public class WordsGenerator
         {
             for (int j = 0; j < 4; j++)
             {
-                sequence(i, j, grid[i][j]);       
+                sequence(i, j, grid[i][j],-1,-1);       
             }
         }
         return words;
     }
     
-    private void sequence(int i, int j, String input)
+    private void sequence(int i, int j, String input,int parentx,int parenty)
     {
         String oldInput;
         int p, q;
@@ -71,11 +71,11 @@ public class WordsGenerator
         {
             p = i + move[k][0];
             q = j + move[k][1];
-            if ((p >= 0 && p < 4) && (q >= 0 && q < 4) && !grid[p][q].contains("."))
+            if ((p >= 0 && p < 4) && (q >= 0 && q < 4) && !grid[p][q].contains(".") && (parentx!=p || parenty!=q))
             {
                 oldInput = input + grid[p][q];
                 grid[p][q] += ".";
-                sequence(p, q, oldInput);
+                sequence(p, q, oldInput,i,j);
                 grid[p][q] = "" + grid[p][q].charAt(0);
             }
         }
