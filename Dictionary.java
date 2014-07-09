@@ -1,6 +1,5 @@
 package boggle;
 
-import java.util.*;
 import java.io.*;
 
 public class Dictionary
@@ -44,6 +43,7 @@ public class Dictionary
 			add(word);
 			word = br.readLine();
 		}
+		br.close();
 	}
 	
 	public int contains(String word)

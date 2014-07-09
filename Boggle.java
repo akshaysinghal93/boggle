@@ -6,6 +6,7 @@
 
 package boggle;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -17,15 +18,15 @@ public class Boggle
 
     /**
      * @param args the command line arguments
+     * @throws IOException 
      */
-    public static void main(String[] args) 
+    public static void main(String[] args) throws IOException 
     {
         GridGenerator gridGenerator = new GridGenerator();
         //String[][] grid=gridGenerator.getGrid();
         WordsGenerator wordsGenerator = new WordsGenerator(gridGenerator);
         ArrayList<String> words;
         words = wordsGenerator.generate();
-        String grid[][] = gridGenerator.getGrid();
         System.out.println("Grid::");
         gridGenerator.display();
         

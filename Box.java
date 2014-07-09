@@ -6,16 +6,8 @@
 
 package boggle;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
-/**
- *
- * @author subprabhakar
- */
 
 public class Box {
     
@@ -41,7 +33,7 @@ public class Box {
             }
             line = br.readLine();
         }
-        
+        br.close();
         return neighStr;
     }
     public void load(int r,int c)

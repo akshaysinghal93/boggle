@@ -1,9 +1,6 @@
 package boggle;
 
 import java.io.IOException;
-import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class GridGenerator 
 {
@@ -11,14 +8,14 @@ public class GridGenerator
     String [][]grid;
     Dice []dices;
     int sideLength;
+    public static final String []diceFaces = { "aaeegn", "elrtty", "aoottw", "abbjoo", "ehrtvw", "cimotv", "distty", "eiosst", "delrvy", "achops", "humnqu", "eeinsu", "eeghnw", "affkps", "hlnnrz", "deilrx" };
     
-    public GridGenerator()
+    public GridGenerator() throws IOException
     {
         this(4);
-        
     }
     
-    public GridGenerator(int sideLength)
+    public GridGenerator(int sideLength) throws IOException
     {
         box = new Box[16];
         for(int i=0;i<16;i++)
@@ -33,11 +30,7 @@ public class GridGenerator
     		dices[i] = new Dice(diceFaces[i]);
     		dices[i].roll();
     	}
-        try {
-            fillGrid();
-        } catch (IOException ex) {
-            Logger.getLogger(GridGenerator.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    	fillGrid();
     }
     
     private void fillGrid() throws IOException
@@ -77,6 +70,4 @@ public class GridGenerator
     {
         return box;
     }
-    
-    public static final String []diceFaces = { "aaeegn", "elrtty", "aoottw", "abbjoo", "ehrtvw", "cimotv", "distty", "eiosst", "delrvy", "achops", "humnqu", "eeinsu", "eeghnw", "affkps", "hlnnrz", "deilrx" };
   }
