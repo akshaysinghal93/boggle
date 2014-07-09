@@ -21,10 +21,13 @@ public class Boggle
     public static void main(String[] args) 
     {
         GridGenerator gridGenerator = new GridGenerator();
-        String[][] grid=gridGenerator.getGrid();
-        WordsGenerator wordsGenerator = new WordsGenerator(grid);
+        //String[][] grid=gridGenerator.getGrid();
+        WordsGenerator wordsGenerator = new WordsGenerator(gridGenerator);
         ArrayList<String> words;
         words = wordsGenerator.generate();
+        String grid[][] = gridGenerator.getGrid();
+        System.out.println("Grid::");
+        gridGenerator.display();
         
         for (int i = 0; i < words.size(); i++)
         {
